@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#07090e" />
-  <title>WhatsApp Channel Report Portal - Malik Fiaz</title>
+  <title>WhatsApp Channel Ban Portal - Malik Fiaz</title>
 
   <style>
     :root {
@@ -124,7 +124,7 @@
       color: var(--primary);
     }
 
-    input {
+    input, textarea {
       width: 100%;
       padding: 11px 14px;
       background: rgba(0,0,0,0.4);
@@ -134,6 +134,7 @@
       font-size: 0.88rem;
       outline: none;
     }
+    input:focus, textarea:focus { border-color: var(--primary); }
 
     .btn {
       width: 100%;
@@ -152,13 +153,16 @@
     .btn-download {
       background: linear-gradient(135deg, var(--accent), #d97706);
       color: #000;
-      display: none;
+      display: block;
       text-align: center;
       text-decoration: none;
       font-weight: 800;
       padding: 13px;
       border-radius: 12px;
       box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
+      cursor: pointer;
+      border: none;
+      width: 100%;
     }
   </style>
 </head>
@@ -171,12 +175,12 @@
       <div class="avatar-wrap">
         <img src="bg.jpg" alt="Malik Fiaz" />
       </div>
-      <h1>WhatsApp Channel Report Portal</h1>
-      <p>Target: noor.e maseeh WhatsApp Channel</p>
+      <h1>WhatsApp Channel Ban Portal</h1>
+      <p>Target: Noor.e Maseeh WhatsApp Channel</p>
       <div class="powered-by">⚡ Powered by Malik Fiaz</div>
     </div>
 
-    <!-- Official WhatsApp Channel Banner -->
+    <!-- Official WhatsApp Channel Banner (Malik Fiaz) -->
     <div class="wa-banner">
       <div class="wa-info">
         <h3>📢 Malik Fiaz Official Channel</h3>
@@ -187,39 +191,48 @@
       </a>
     </div>
 
-    <!-- 1000+ Heavy Gmail Report Form -->
+    <!-- Target WhatsApp Channel Link & Mass Report Form -->
     <div class="card">
-      <div class="section-title">🚨 Target WhatsApp Channel</div>
-      <input type="text" id="targetChannel" value="noor.e maseeh (WhatsApp Channel)" readonly />
-      <button class="btn" onclick="sendMassGmailReport()">✉️ Gmail Par 1000+ Heavy Reports Bhejein</button>
+      <div class="section-title">🚨 Target WhatsApp Channel (Ban Target)</div>
+      <input type="text" id="targetChannel" value="Noor.e Maseeh WhatsApp Channel Link / Username" placeholder="Target WhatsApp Channel Link yahan dalein..." />
+      <textarea id="customReason" rows="3">URGENT BAN REQUEST: Severe violation of WhatsApp Terms of Service, spreading hate speech against religious sentiments and Islam.</textarea>
+      
+      <!-- Send Report via Gmail Button -->
+      <button class="btn" onclick="sendMassReport()">✉️ Send 1000+ Heavy Reports via Gmail</button>
     </div>
 
     <!-- Download App Section -->
     <div class="card">
-      <div class="section-title">📱 App Download (PWA)</div>
-      <p style="font-size: 0.78rem; color: var(--muted);">Apne mobile phone mein is portal ko permanent app ki tarah install karne ke liye neeche click karein:</p>
-      <button id="installAppBtn" class="btn btn-download" style="display:block;">📥 Download / Install App</button>
+      <div class="section-title">📱 Install / Download App</div>
+      <p style="font-size: 0.78rem; color: var(--muted);">Is portal ko apne mobile phone mein permanent app ki tarah install karne ke liye neeche click karein:</p>
+      <button id="installAppBtn" class="btn-download">📥 Download & Install App</button>
     </div>
   </div>
 
   <script>
-    function sendMassGmailReport() {
-      const target = "noor.e maseeh WhatsApp Channel";
-      
-      // Generating 1000+ heavy report payload lines for Gmail body
-      let heavyText = `URGENT MASS REPORT: Action required against blasphemous and hate speech content.\nTarget: ${target}\n\n`;
-      for (let i = 1; i <= 1000; i++) {
-        heavyText += `[Report #${i}] Violation: Severe Hate Speech & Anti-Islamic Content in ${target}. Immediate Ban Required.\n`;
+    function sendMassReport() {
+      const target = document.getElementById('targetChannel').value.trim();
+      const reason = document.getElementById('customReason').value.trim();
+
+      if (!target) {
+        alert("Pehle target WhatsApp channel ka link darj karein!");
+        return;
       }
 
-      const emailSubject = encodeURIComponent("MASS REPORT: Permanent Ban Request for " + target);
-      const emailBody = encodeURIComponent(heavyText);
+      // Generating 1000+ heavy report payload lines for WhatsApp Support Team via Gmail
+      let heavyPayload = `URGENT BAN REQUEST: Multiple Terms of Service Violations\nTarget WhatsApp Channel: ${target}\nReason: ${reason}\n\n--- MASS REPORT LOGS ---\n`;
+      for (let i = 1; i <= 1000; i++) {
+        heavyPayload += `[Report ID #${i}] Target Channel: ${target} - Violation: Hate Speech / Blasphemy. Immediate Permanent Ban Required.\n`;
+      }
+
+      const emailSubject = encodeURIComponent("URGENT BAN REQUEST: Permanent Block for WhatsApp Channel " + target);
+      const emailBody = encodeURIComponent(heavyPayload);
       
-      // Opens Gmail with pre-loaded 1000+ heavy reports directed to official support/abuse emails
+      // Opens Gmail directly with preloaded heavy reports addressed to WhatsApp Support
       window.location.href = `mailto:support@whatsapp.com,android_help@support.whatsapp.com?subject=${emailSubject}&body=${emailBody}`;
     }
 
-    // PWA Install / Download Trigger
+    // PWA Install / Download Handler
     let deferredPrompt;
     const installBtn = document.getElementById('installAppBtn');
 
@@ -234,7 +247,7 @@
         const { outcome } = await deferredPrompt.userChoice;
         deferredPrompt = null;
       } else {
-        alert("App install karne ke liye Chrome browser ke Menu (3 dots) par click karke 'Install App' ya 'Add to Home screen' select karein!");
+        alert("App install karne ke liye apne browser (Chrome) ke Menu (3 dots) par click karke 'Install App' ya 'Add to Home screen' select karein!");
       }
     });
   </script>
