@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#07090e" />
-  <title>Official Report Portal - Malik Fiaz</title>
+  <title>WhatsApp Channel Report Portal - Malik Fiaz</title>
 
   <style>
     :root {
@@ -49,7 +49,7 @@
       gap: 14px;
       padding: 16px;
       z-index: 1;
-      padding-bottom: 50px;
+      padding-bottom: 60px;
     }
 
     .header {
@@ -79,6 +79,7 @@
 
     .header h1 { font-size: 1.25rem; font-weight: 800; color: #fff; }
     .header p { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+    .powered-by { font-size: 0.75rem; color: var(--accent); margin-top: 6px; font-weight: 700; }
 
     .wa-banner {
       background: linear-gradient(135deg, rgba(18, 140, 126, 0.25), rgba(37, 211, 102, 0.15));
@@ -123,7 +124,7 @@
       color: var(--primary);
     }
 
-    input, textarea {
+    input {
       width: 100%;
       padding: 11px 14px;
       background: rgba(0,0,0,0.4);
@@ -133,8 +134,6 @@
       font-size: 0.88rem;
       outline: none;
     }
-
-    input:focus, textarea:focus { border-color: var(--primary); }
 
     .btn {
       width: 100%;
@@ -148,48 +147,19 @@
       cursor: pointer;
       transition: 0.2s;
     }
-
     .btn:hover { background: #dc2626; }
 
-    .report-links {
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-    }
-
-    .platform-link {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding: 10px 14px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid var(--border);
-      border-radius: 10px;
-      color: #fff;
+    .btn-download {
+      background: linear-gradient(135deg, var(--accent), #d97706);
+      color: #000;
+      display: none;
+      text-align: center;
       text-decoration: none;
-      font-size: 0.85rem;
-      font-weight: 600;
+      font-weight: 800;
+      padding: 13px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(245, 158, 11, 0.35);
     }
-
-    .platform-link:hover { background: rgba(255,255,255,0.1); }
-
-    .toast {
-      position: fixed;
-      bottom: 25px;
-      left: 50%;
-      transform: translateX(-50%) translateY(20px);
-      background: var(--success);
-      color: #022c22;
-      font-weight: 700;
-      padding: 10px 20px;
-      border-radius: 99px;
-      font-size: 0.85rem;
-      opacity: 0;
-      transition: 0.3s;
-      pointer-events: none;
-      z-index: 1000;
-    }
-    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
   </style>
 </head>
 <body>
@@ -201,61 +171,72 @@
       <div class="avatar-wrap">
         <img src="bg.jpg" alt="Malik Fiaz" />
       </div>
-      <h1>Malik Fiaz Report Portal</h1>
-      <p>Target: noor.e maseeh Channel Report Campaign</p>
+      <h1>WhatsApp Channel Report Portal</h1>
+      <p>Target: noor.e maseeh WhatsApp Channel</p>
+      <div class="powered-by">⚡ Powered by Malik Fiaz</div>
     </div>
 
-    <!-- Official WhatsApp Channel Banner (Malik Fiaz) -->
+    <!-- Official WhatsApp Channel Banner -->
     <div class="wa-banner">
       <div class="wa-info">
         <h3>📢 Malik Fiaz Official Channel</h3>
-        <p>New updates aur campaigns ke liye join karein</p>
+        <p>New updates aur reports ke liye join karein</p>
       </div>
       <a href="https://whatsapp.com/channel/0029VbDFAIv8vd1SmiyHe02l" target="_blank" rel="noopener noreferrer" class="wa-btn">
         Join Channel
       </a>
     </div>
 
-    <!-- Pre-filled Target Complaint Form -->
+    <!-- 1000+ Heavy Gmail Report Form -->
     <div class="card">
-      <div class="section-title">⚠️ Target Channel Details</div>
-      <input type="text" id="targetUrl" value="noor.e maseeh (YouTube/Social Media Channel)" readonly />
-      <textarea id="reason">Is channel (noor.e maseeh) par Allah aur Islam ke khilaf nafrat angez, ghalat aur gair-akhlaqi content phailaya ja raha hai. Isay foran block aur suspend kiya jaye.</textarea>
-      <button class="btn" onclick="generateReportText()">📋 Heavy Report Statement Copy Karein</button>
+      <div class="section-title">🚨 Target WhatsApp Channel</div>
+      <input type="text" id="targetChannel" value="noor.e maseeh (WhatsApp Channel)" readonly />
+      <button class="btn" onclick="sendMassGmailReport()">✉️ Gmail Par 1000+ Heavy Reports Bhejein</button>
     </div>
 
-    <!-- Direct Official Reporting Links -->
+    <!-- Download App Section -->
     <div class="card">
-      <div class="section-title">🛡️ Yahan Click Karke Report Submit Karein</div>
-      <div class="report-links">
-        <a href="https://support.google.com/youtube/answer/2802027" target="_blank" class="platform-link">
-          <span>YouTube Official Report Center</span> ➔
-        </a>
-        <a href="https://complaint.pta.gov.pk/" target="_blank" class="platform-link">
-          <span>PTA Pakistan Cyber Complaint</span> ➔
-        </a>
-        <a href="https://www.fia.gov.pk/en/complaint" target="_blank" class="platform-link">
-          <span>FIA Cyber Crime Wing</span> ➔
-        </a>
-      </div>
+      <div class="section-title">📱 App Download (PWA)</div>
+      <p style="font-size: 0.78rem; color: var(--muted);">Apne mobile phone mein is portal ko permanent app ki tarah install karne ke liye neeche click karein:</p>
+      <button id="installAppBtn" class="btn btn-download" style="display:block;">📥 Download / Install App</button>
     </div>
   </div>
 
-  <div class="toast" id="toast">Heavy Report Copied Successfully!</div>
-
   <script>
-    function generateReportText() {
-      const url = document.getElementById('targetUrl').value;
-      const reason = document.getElementById('reason').value;
+    function sendMassGmailReport() {
+      const target = "noor.e maseeh WhatsApp Channel";
       
-      const fullText = `URGENT REPORT COMPLAINT:\nTarget Channel: ${url}\nReason: ${reason}\nAction Required: Immediate permanent ban due to hate speech and severe violation of religious sentiments.`;
+      // Generating 1000+ heavy report payload lines for Gmail body
+      let heavyText = `URGENT MASS REPORT: Action required against blasphemous and hate speech content.\nTarget: ${target}\n\n`;
+      for (let i = 1; i <= 1000; i++) {
+        heavyText += `[Report #${i}] Violation: Severe Hate Speech & Anti-Islamic Content in ${target}. Immediate Ban Required.\n`;
+      }
+
+      const emailSubject = encodeURIComponent("MASS REPORT: Permanent Ban Request for " + target);
+      const emailBody = encodeURIComponent(heavyText);
       
-      navigator.clipboard.writeText(fullText);
-      const t = document.getElementById('toast');
-      t.classList.add('show');
-      setTimeout(() => t.classList.remove('show'), 2500);
+      // Opens Gmail with pre-loaded 1000+ heavy reports directed to official support/abuse emails
+      window.location.href = `mailto:support@whatsapp.com,android_help@support.whatsapp.com?subject=${emailSubject}&body=${emailBody}`;
     }
+
+    // PWA Install / Download Trigger
+    let deferredPrompt;
+    const installBtn = document.getElementById('installAppBtn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+    });
+
+    installBtn.addEventListener('click', async () => {
+      if (deferredPrompt) {
+        deferredPrompt.prompt();
+        const { outcome } = await deferredPrompt.userChoice;
+        deferredPrompt = null;
+      } else {
+        alert("App install karne ke liye Chrome browser ke Menu (3 dots) par click karke 'Install App' ya 'Add to Home screen' select karein!");
+      }
+    });
   </script>
 </body>
 </html>
-  
