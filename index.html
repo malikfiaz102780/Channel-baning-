@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ur" dir="ltr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#07090e" />
+  <title>Official Report Portal - Malik Fiaz</title>
+
+  <style>
+    :root {
+      --bg: #07090e;
+      --card: rgba(19, 26, 42, 0.9);
+      --border: rgba(255, 255, 255, 0.1);
+      --primary: #ef4444;
+      --accent: #f59e0b;
+      --whatsapp: #25D366;
+      --text: #f8fafc;
+      --muted: #94a3b8;
+      --success: #10b981;
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      position: relative;
+      overflow-x: hidden;
+    }
+
+    .bg-overlay {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: url('bg.jpg') no-repeat center center/cover;
+      filter: blur(15px) brightness(0.25);
+      transform: scale(1.1);
+      z-index: -1;
+    }
+
+    .app-container {
+      width: 100%;
+      max-width: 480px;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+      padding: 16px;
+      z-index: 1;
+      padding-bottom: 50px;
+    }
+
+    .header {
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 18px;
+      text-align: center;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+    }
+
+    .avatar-wrap {
+      width: 82px; height: 82px;
+      margin: 0 auto 10px;
+      border-radius: 50%;
+      padding: 3px;
+      background: linear-gradient(135deg, var(--accent), var(--primary));
+    }
+
+    .avatar-wrap img {
+      width: 100%; height: 100%;
+      object-fit: cover;
+      border-radius: 50%;
+      display: block;
+    }
+
+    .header h1 { font-size: 1.25rem; font-weight: 800; color: #fff; }
+    .header p { font-size: 0.78rem; color: var(--muted); margin-top: 2px; }
+
+    .wa-banner {
+      background: linear-gradient(135deg, rgba(18, 140, 126, 0.25), rgba(37, 211, 102, 0.15));
+      backdrop-filter: blur(12px);
+      border: 1px solid rgba(37, 211, 102, 0.4);
+      border-radius: 16px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+    }
+
+    .wa-info h3 { font-size: 0.9rem; font-weight: 700; color: #fff; }
+    .wa-info p { font-size: 0.74rem; color: #cbd5e1; margin-top: 2px; }
+
+    .wa-btn {
+      background: var(--whatsapp);
+      color: #042f1a;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 0.8rem;
+      padding: 9px 12px;
+      border-radius: 10px;
+      white-space: nowrap;
+    }
+
+    .card {
+      background: var(--card);
+      backdrop-filter: blur(12px);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      padding: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .section-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--primary);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 11px 14px;
+      background: rgba(0,0,0,0.4);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: var(--text);
+      font-size: 0.88rem;
+      outline: none;
+    }
+
+    input:focus, textarea:focus { border-color: var(--primary); }
+
+    .btn {
+      width: 100%;
+      padding: 12px;
+      border-radius: 12px;
+      border: none;
+      background: var(--primary);
+      color: #fff;
+      font-weight: 700;
+      font-size: 0.9rem;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+
+    .btn:hover { background: #dc2626; }
+
+    .report-links {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .platform-link {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 14px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      color: #fff;
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+
+    .platform-link:hover { background: rgba(255,255,255,0.1); }
+
+    .toast {
+      position: fixed;
+      bottom: 25px;
+      left: 50%;
+      transform: translateX(-50%) translateY(20px);
+      background: var(--success);
+      color: #022c22;
+      font-weight: 700;
+      padding: 10px 20px;
+      border-radius: 99px;
+      font-size: 0.85rem;
+      opacity: 0;
+      transition: 0.3s;
+      pointer-events: none;
+      z-index: 1000;
+    }
+    .toast.show { opacity: 1; transform: translateX(-50%) translateY(0); }
+  </style>
+</head>
+<body>
+
+  <div class="bg-overlay"></div>
+
+  <div class="app-container">
+    <div class="header">
+      <div class="avatar-wrap">
+        <img src="bg.jpg" alt="Malik Fiaz" />
+      </div>
+      <h1>Malik Fiaz Report Portal</h1>
+      <p>Target: noor.e maseeh Channel Report Campaign</p>
+    </div>
+
+    <!-- Official WhatsApp Channel Banner (Malik Fiaz) -->
+    <div class="wa-banner">
+      <div class="wa-info">
+        <h3>📢 Malik Fiaz Official Channel</h3>
+        <p>New updates aur campaigns ke liye join karein</p>
+      </div>
+      <a href="https://whatsapp.com/channel/0029VbDFAIv8vd1SmiyHe02l" target="_blank" rel="noopener noreferrer" class="wa-btn">
+        Join Channel
+      </a>
+    </div>
+
+    <!-- Pre-filled Target Complaint Form -->
+    <div class="card">
+      <div class="section-title">⚠️ Target Channel Details</div>
+      <input type="text" id="targetUrl" value="noor.e maseeh (YouTube/Social Media Channel)" readonly />
+      <textarea id="reason">Is channel (noor.e maseeh) par Allah aur Islam ke khilaf nafrat angez, ghalat aur gair-akhlaqi content phailaya ja raha hai. Isay foran block aur suspend kiya jaye.</textarea>
+      <button class="btn" onclick="generateReportText()">📋 Heavy Report Statement Copy Karein</button>
+    </div>
+
+    <!-- Direct Official Reporting Links -->
+    <div class="card">
+      <div class="section-title">🛡️ Yahan Click Karke Report Submit Karein</div>
+      <div class="report-links">
+        <a href="https://support.google.com/youtube/answer/2802027" target="_blank" class="platform-link">
+          <span>YouTube Official Report Center</span> ➔
+        </a>
+        <a href="https://complaint.pta.gov.pk/" target="_blank" class="platform-link">
+          <span>PTA Pakistan Cyber Complaint</span> ➔
+        </a>
+        <a href="https://www.fia.gov.pk/en/complaint" target="_blank" class="platform-link">
+          <span>FIA Cyber Crime Wing</span> ➔
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast">Heavy Report Copied Successfully!</div>
+
+  <script>
+    function generateReportText() {
+      const url = document.getElementById('targetUrl').value;
+      const reason = document.getElementById('reason').value;
+      
+      const fullText = `URGENT REPORT COMPLAINT:\nTarget Channel: ${url}\nReason: ${reason}\nAction Required: Immediate permanent ban due to hate speech and severe violation of religious sentiments.`;
+      
+      navigator.clipboard.writeText(fullText);
+      const t = document.getElementById('toast');
+      t.classList.add('show');
+      setTimeout(() => t.classList.remove('show'), 2500);
+    }
+  </script>
+</body>
+</html>
+  
